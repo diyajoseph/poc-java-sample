@@ -13,8 +13,6 @@ stages:
 - stage: build
   jobs:
   - job: run_build
-    pool:
-      vmImage: 'ubuntu-latest'
     steps:
     - task: Maven@3
       inputs:
@@ -31,8 +29,6 @@ stages:
   dependsOn: build
   jobs:
   - job: run_cocotests
-    pool:
-      vmImage: 'ubuntu-latest'
     steps:
     - task: PublishCodeCoverageResults@1
       inputs:
