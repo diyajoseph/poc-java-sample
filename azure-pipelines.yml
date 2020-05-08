@@ -32,9 +32,14 @@ stages:
         reportDirectory: "$(System.DefaultWorkingDirectory)/**/site/jacoco"
         failIfCoverageEmpty: true
 
-- stage: test
+- stage: sonarqube
+  jobs:
+  - job: run_sonarqube
+    steps:
+    - script: echo Sonarqube
+  
+- stage: testing
   jobs:
   - job: run_tests
     steps:
     - script: echo Test
-  
