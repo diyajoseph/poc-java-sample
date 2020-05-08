@@ -12,7 +12,7 @@ pool:
 stages:
 - stage: build
   jobs:
-  - job: run_build
+  - job: mavenbuild
     steps:
     - task: Maven@3
       inputs:
@@ -24,11 +24,7 @@ stages:
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'
-
-- stage: test
-  dependsOn: build
-  jobs:
-  - job: run_cocotests
+  - job: codecoverage
     steps:
     - task: PublishCodeCoverageResults@1
       inputs:
@@ -36,3 +32,11 @@ stages:
         summaryFileLocation: "$(System.DefaultWorkingDirectory)/**/site/jacoco/jacoco.xml"
         reportDirectory: "$(System.DefaultWorkingDirectory)/**/site/jacoco"
         failIfCoverageEmpty: true
+
+- stage: test
+  dependsOn: build
+  jobs:
+  - job: run_tests
+    steps:
+    - script: echo Test
+  
