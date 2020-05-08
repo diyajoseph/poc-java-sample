@@ -24,8 +24,7 @@ stages:
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'
-  - job: codecoverage
-    steps:
+  
     - task: PublishCodeCoverageResults@1
       inputs:
         codeCoverageTool: "JaCoCo"
