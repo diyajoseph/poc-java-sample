@@ -34,7 +34,6 @@ stages:
         failIfCoverageEmpty: true
 
 - stage: test
-  dependsOn: build
   jobs:
   - job: run_tests
     steps:
